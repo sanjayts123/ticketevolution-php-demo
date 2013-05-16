@@ -1,14 +1,14 @@
 {
-    "name": "teamonej/ticket-evolution-api-demo",
+    "name": "teamonetickets/ticket-evolution-api-demo",
     "type": "project",
     "description": "A simple demo app to showcase and test the Ticket Evolution API.",
     "keywords": ["Ticket Evolution", "ticket"],
-    "homepage": "https://github.com/TeamOneJ/Ticket-Evolution-API-Demo",
+    "homepage": "https://github.com/TeamOneTickets/ticket-evolution-api-demo",
     "license": "BSD-3-Clause",
     "repositories": [
         {
             "type": "vcs",
-            "url": "https://github.com/TeamOneJ/ticketevolution-php",
+            "url": "https://github.com/ticketevolution/ticketevolution-php",
             "branch": "2.0"
         }
 
@@ -20,12 +20,12 @@
     ],
     "require": {
         "php": ">=5.3.3",
-        "teamonej/ticketevolution-php": "2.0.x-dev"
+        "ticketevolution/ticketevolution-php": "2.0.0"
     },
     "minimum-stability": "dev",
     "support": {
-        "issues": "https://github.com/teamonej/Ticket-Evolution-API-Demo/issues",
-        "wiki": "https://github.com/teamonej/Ticket-Evolution-API-Demo/wiki",
-        "source": "https://github.com/teamonej/Ticket-Evolution-API-Demo"
+        "issues": "https://github.com/TeamOneTickets/ticket-evolution-api-demo/issues",
+        "wiki": "https://github.com/TeamOneTickets/ticket-evolution-api-demo/wiki",
+        "source": "https://github.com/TeamOneTickets/ticket-evolution-api-demo"
     }
 }
