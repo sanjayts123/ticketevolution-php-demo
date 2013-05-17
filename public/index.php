@@ -190,8 +190,19 @@ if (isset($_REQUEST['libraryMethod'])) {
                     <div class="nav-collapse collapse">
                         <ul class="nav">
                             <li class="active"><a href="/"><strong>Ticket Evolution PHP Library Demo</strong></a></li>
-                            <li><a href="https://github.com/TeamOneTickets/ticket-evolution-php-library-demo">GitHub <i class="icon-white icon-github"></i></a></li>
-                            <li><a href="https://github.com/TeamOneTickets/ticket-evolution-php-library-demo/issues" target="_blank">Issues <i class="icon-white icon-share-alt"></i></a></li>
+                            <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Demo <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="https://github.com/TeamOneTickets/ticket-evolution-php-library-demo">GitHub <i class="icon-white icon-github"></i></a></li>
+                                    <li><a href="https://github.com/TeamOneTickets/ticket-evolution-php-library-demo/issues" target="_blank">Issues</a></li>
+                                </ul>
+                            </li>
+                            <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">PHP Library <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="https://github.com/ticketevolution/ticketevolution-php">GitHub</a></li>
+                                    <li><a href="https://github.com/ticketevolution/ticketevolution-php/issues" target="_blank">Issues</a></li>
+                                    <li><a href="https://github.com/ticketevolution/ticketevolution-php/wiki" target="_blank">Wiki</a></li>
+                                </ul>
+                            </li>
                             <li><a href="http://www.ticketevolution.com/products/api-affiliates-and-partners/" target="_blank">Ticket Evolution <i class="icon-white icon-share-alt"></i></a></li>
                             <li><a href="http://developer.ticketevolution.com/" target="_blank">API Documentation <i class="icon-white icon-share-alt"></i></a></li>
                             <li><a href="http://www.teamonetickets.com/" target="_blank">Team One Tickets <i class="icon-white icon-share-alt"></i></a></li>
@@ -1487,7 +1498,7 @@ if (isset($_REQUEST['libraryMethod'])) {
                     </div>
 
                     <div class="control-group searchBrokerages searchOffices searchUsers searchVenues searchPerformers searchQuotes search">
-                        <label class="control-label" for="q"><code>Search Term (q)</code></label>
+                        <label class="control-label" for="q">Search Term (<code>q</code>)</label>
                         <div class="controls">
                             <input name="q" id="q" type="text" value="Front Row" />
                         </div>
@@ -1501,7 +1512,7 @@ if (isset($_REQUEST['libraryMethod'])) {
                     </div>
 
                     <div class="control-group listOffices">
-                        <label class="control-label" for="isMain"><code>Is Main? (main)</code></label>
+                        <label class="control-label" for="isMain">Is Main? (<code>main</code>)</label>
                         <div class="controls">
                             <input name="main" id="isMain" type="checkbox" value="1" />
                         </div>
@@ -1706,6 +1717,13 @@ if (isset($_REQUEST['libraryMethod'])) {
                     </div>
 
                     <div class="control-group listTicketGroups">
+                        <label class="control-label" for="last_minute_tickets"><code>last_minute_tickets</code></label>
+                        <div class="controls">
+                            <input name="last_minute_tickets" id="last_minute_tickets" type="checkbox" value="1" />
+                        </div>
+                    </div>
+
+                    <div class="control-group listTicketGroups">
                         <label class="control-label" for="quantity"><code>quantity</code></label>
                         <div class="controls">
                             <input name="quantity" id="quantity" type="number" value="4" min="1" />
@@ -1713,7 +1731,7 @@ if (isset($_REQUEST['libraryMethod'])) {
                     </div>
 
                     <div class="control-group listTicketGroups">
-                        <label class="control-label" for="ticketgroup_type"><code>(ticketgroup) type</code></label>
+                        <label class="control-label" for="ticketgroup_type">(ticketgroup) <code>type</code></label>
                         <div class="controls">
                         <select name="type" id="ticketgroup_type">
                             <option value="">All</option>
@@ -1724,7 +1742,7 @@ if (isset($_REQUEST['libraryMethod'])) {
                     </div>
 
                     <div class="control-group listTicketGroups">
-                        <label class="control-label" for="price"><code>price (maximum)</code></label>
+                        <label class="control-label" for="price"><code>price</code> (maximum)</label>
                         <div class="controls">
                             <input name="price" id="price" type="text" value="" />
                         </div>
@@ -1765,7 +1783,7 @@ if (isset($_REQUEST['libraryMethod'])) {
                     </div>
 
                     <div class="control-group listShipments">
-                        <label class="control-label" for="shipment_state"><code>(shipment) state</code></label>
+                        <label class="control-label" for="shipment_state">(shipment) <code>state</code></label>
                         <div class="controls">
                         <select name="state" id="shipment_state">
                             <option value="">Select One…</option>
@@ -1911,7 +1929,7 @@ if (isset($_REQUEST['libraryMethod'])) {
                     </div>
 
                     <div class="control-group listOrders">
-                        <label class="control-label" for="order_state"><code>(order) state</code></label>
+                        <label class="control-label" for="order_state">(order) <code>state</code></label>
                         <div class="controls">
                         <select name="state" id="order_state">
                             <option value="">Select One…</option>
@@ -2258,7 +2276,7 @@ if (isset($_REQUEST['libraryMethod'])) {
                     </div>
 
                     <div class="control-group listClientEmailAddresses createClientEmailAddresses updateClientEmailAddress">
-                        <label class="control-label" for="address"><code>(email) address</code></label>
+                        <label class="control-label" for="address">(email) <code>address</code></label>
                         <div class="controls">
                             <input name="address" id="address" type="email" value="" />
                         </div>
@@ -2328,7 +2346,7 @@ if (isset($_REQUEST['libraryMethod'])) {
                     </div>
 
                     <div class="control-group listClientAddresses createClientAddresses updateClientAddress">
-                        <label class="control-label" for="isPrimary"><code>Is primary? (primary)</code></label>
+                        <label class="control-label" for="isPrimary">Is primary? (<code>primary</code>)</label>
                         <div class="controls">
                             <input name="primary" id="isPrimary" type="checkbox" value="1" />
                         </div>
@@ -2399,7 +2417,7 @@ if (isset($_REQUEST['libraryMethod'])) {
                     </div>
 
                     <div class="control-group showEvoPayAccount listEvoPayTransactions showEvoPayTransaction">
-                        <label class="control-label" for="account_id"><code>(EvoPay) account_id</code></label>
+                        <label class="control-label" for="account_id">(EvoPay) <code>account_id</code></label>
                         <div class="controls">
                             <input name="account_id" id="account_id" type="text" value="" />
                         </div>
@@ -2414,7 +2432,7 @@ if (isset($_REQUEST['libraryMethod'])) {
                     </div>
 
                     <div class="control-group listEvoPayTransactions">
-                        <label class="control-label" for="evopay_transaction_type"><code>(EvoPay Transaction) type</code></label>
+                        <label class="control-label" for="evopay_transaction_type">(EvoPay Transaction) <code>type</code></label>
                         <div class="controls">
                         <select name="type" id="evopay_transaction_type">
                             <option value="">Select One…</option>
@@ -2425,7 +2443,7 @@ if (isset($_REQUEST['libraryMethod'])) {
                     </div>
 
                     <div class="control-group showEvoPayTransaction">
-                        <label class="control-label" for="transaction_id"><code>(EvoPay) transaction_id</code></label>
+                        <label class="control-label" for="transaction_id">(EvoPay) <code>transaction_id</code></label>
                         <div class="controls">
                             <input name="transaction_id" id="transaction_id" type="text" value="" />
                         </div>
