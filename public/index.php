@@ -183,13 +183,13 @@ if (isset($_REQUEST['libraryMethod'])) {
             <div class="navbar-inner">
                 <div class="container">
                     <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
                     </button>
+                    <a class="brand" href="/">Ticket Evolution PHP Library Demo</a>
                     <div class="nav-collapse collapse">
                         <ul class="nav">
-                            <li class="active"><a href="/"><strong>Ticket Evolution PHP Library Demo</strong></a></li>
                             <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Demo <b class="caret"></b></a>
                                 <ul class="dropdown-menu">
                                     <li><a href="https://github.com/TeamOneTickets/ticket-evolution-php-library-demo">GitHub <i class="icon-white icon-github"></i></a></li>
