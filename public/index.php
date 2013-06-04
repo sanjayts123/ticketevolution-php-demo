@@ -715,6 +715,10 @@ if (isset($_REQUEST['libraryMethod'])) {
                         case 'searchVenues' :
                         case 'search' :
                             $queryTerm = $options['q'];
+                            if (isset($options['types']) && is_array($options['types'])) {
+                                $options['types'] = implode(',', $options['types']);
+                            }
+
                             _outputSearchCode($libraryMethod, $queryTerm, $options);
                             $results = _doSearch($tevo, $libraryMethod, $queryTerm, $options);
                             break;
@@ -1581,7 +1585,7 @@ if (isset($_REQUEST['libraryMethod'])) {
                     <div class="control-group search">
                         <label class="control-label" for="types"><code>types</code></label>
                         <div class="controls">
-                        <select name="types" id="types">
+                        <select name="types[]" id="types" multiple="multiple" size="4">
                             <option value="performers">performers</option>
                             <option value="venues">venues</option>
                             <option value="offices">offices</option>
@@ -2575,6 +2579,8 @@ function _outputOptionsCode($options)
             echo '    \'' . $key . '\' => ' . $val . ',' . PHP_EOL;
         } elseif (!is_array($val) && !is_object($val) && !is_numeric($val)) {
             echo '    \'' . $key . '\' => \'' . $val . '\',' . PHP_EOL;
+//         } elseif (is_array($val)) {
+//             echo '    \'' . $key . '\' => \'' . implode(',', $val) . '\',' . PHP_EOL;
         }
     }
     echo ');' . PHP_EOL . PHP_EOL

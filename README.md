@@ -4,6 +4,12 @@ There is a live demo available at http://ticketevolution-demo.teamonetickets.com
 
 ## RELEASE INFORMATION
 
+### June 4, 2013 1.0.2
+- Tweaked code for `search()` endpoint to properly put `types` values into a comma separated list.
+
+### May 17, 2013 1.0.1
+- Tweaked header and some property labels
+
 ### May 17, 2013 1.0.0
 - Initial release after splitting this off from the [original project](https://github.com/ticketevolution/ticketevolution-php).
 - Rewrite to use [Bootstrap](http://twitter.github.io/bootstrap/) and [Composer](http://getcomposer.org/).
