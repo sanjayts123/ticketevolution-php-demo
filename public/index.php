@@ -1585,12 +1585,20 @@ if (isset($_REQUEST['libraryMethod'])) {
                     <div class="control-group search">
                         <label class="control-label" for="types"><code>types</code></label>
                         <div class="controls">
-                        <select name="types[]" id="types" multiple="multiple" size="4">
+                        <select name="types[]" id="types" multiple="multiple" size="5">
                             <option value="performers">performers</option>
                             <option value="venues">venues</option>
                             <option value="offices">offices</option>
                             <option value="clients">clients</option>
+                            <option value="events">events</option>
                         </select>
+                        </div>
+                    </div>
+
+                    <div class="control-group search">
+                        <label class="control-label" for="fuzzy"><code>fuzzy</code></label>
+                        <div class="controls">
+                            <input name="fuzzy" id="fuzzy" type="checkbox" value="1" />
                         </div>
                     </div>
 

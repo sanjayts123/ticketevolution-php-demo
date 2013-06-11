@@ -1,20 +1,9 @@
 # Demonstration of the Ticket Evolution PHP Library for use with Zend Framework 1
-
 There is a live demo available at http://ticketevolution-demo.teamonetickets.com/
 
 ## RELEASE INFORMATION
+See [CHANGELOG.md](https://github.com/TeamOneTickets/ticket-evolution-php-library-demo/blob/master/CHANGELOG.md)
 
-### June 4, 2013 1.0.2
-- Tweaked code for `search()` endpoint to properly put `types` values into a comma separated list.
-
-### May 17, 2013 1.0.1
-- Tweaked header and some property labels
-
-### May 17, 2013 1.0.0
-- Initial release after splitting this off from the [original project](https://github.com/ticketevolution/ticketevolution-php).
-- Rewrite to use [Bootstrap](http://twitter.github.io/bootstrap/) and [Composer](http://getcomposer.org/).
-
-----
 
 ## SYSTEM REQUIREMENTS
 The Ticket Evolution PHP Library **requires PHP 5.3.3 or later** and Zend Framework 1.
@@ -29,5 +18,6 @@ The Ticket Evolution PHP Library **requires PHP 5.3.3 or later** and Zend Framew
 
 4. Once you have Composer installed simply `cd` to your directory for this project and execute `composer install`
 
+
 ## LICENSE
-The files in this archive are released under the BSD 3-Clause License. You can find a copy of this license in `LICENSE.txt`.
+The files in this archive are released under the [BSD 3-Clause License](http://opensource.org/licenses/BSD-3-Clause). You can find a copy of this license in [LICENSE.txt](https://github.com/TeamOneTickets/ticket-evolution-php-library-demo/blob/master/LICENSE.txt).
