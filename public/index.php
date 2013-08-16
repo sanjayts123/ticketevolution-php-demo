@@ -1729,6 +1729,13 @@ if (isset($_REQUEST['libraryMethod'])) {
                     </div>
 
                     <div class="control-group listTicketGroups">
+                        <label class="control-label" for="lightweight"><code>lightweight</code></label>
+                        <div class="controls">
+                            <input name="lightweight" id="lightweight" type="checkbox" value="1" />
+                        </div>
+                    </div>
+
+                    <div class="control-group listTicketGroups">
                         <label class="control-label" for="last_minute_tickets"><code>last_minute_tickets</code></label>
                         <div class="controls">
                             <input name="last_minute_tickets" id="last_minute_tickets" type="checkbox" value="1" />
