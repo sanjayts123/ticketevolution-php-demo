@@ -1,3 +1,6 @@
+## 1.0.4 (August 16, 2013)
+- Added the ability to add the 'lightweight' option to listTicketGroups()
+
 ## 1.0.3 (June 11, 2013)
 - Added 'events' as new type for search() and the option to make search() "fuzzy".
 
