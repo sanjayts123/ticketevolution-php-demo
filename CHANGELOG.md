@@ -1,3 +1,6 @@
+## 1.0.5 (September 3, 2013)
+- Fixed bug where using 'order_by' wouldn’t work
+
 ## 1.0.4 (August 16, 2013)
 - Added the ability to add the 'lightweight' option to listTicketGroups()
 

@@ -1603,9 +1603,9 @@ if (isset($_REQUEST['libraryMethod'])) {
                     </div>
 
                     <div class="control-group listEvents listPerformers listVenues">
-                        <label class="control-label" for="order_by1"><code>order_by</code></label>
+                        <label class="control-label" for="order_by"><code>order_by</code></label>
                         <div class="controls">
-                            <input name="order_by" id="order_by1" type="text" value="" />
+                            <input name="order_by" id="order_by" type="text" value="" />
                         </div>
                     </div>
 
@@ -2484,13 +2484,6 @@ if (isset($_REQUEST['libraryMethod'])) {
 
 
 
-                    <div class="control-group listEvents">
-                        <label class="control-label" for="order_by2"><code>order_by</code></label>
-                        <div class="controls">
-                            <input name="order_by" id="order_by2" type="text" value="" />
-                        </div>
-                    </div>
-
                     <div class="control-group createClients updateClient" id="tagsWrapper">
                         <label class="control-label" for="tags"><code>tags</code></label>
                         <div class="controls">
@@ -2540,6 +2533,7 @@ function _getOptions($input)
      * $validators for this demo.
      */
     $unknown = $input->getUnknown();
+//     var_dump($unknown);
     foreach ($unknown as $key => $value) {
         if ($value !== '' && stristr($key, '_operator') === false) {
 //        if (stristr($key, '_operator') === false) {
