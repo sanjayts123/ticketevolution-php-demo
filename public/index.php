@@ -216,8 +216,8 @@ if (isset($_REQUEST['libraryMethod'])) {
             <div class="page-header">
                 <h1>Demonstration of the Ticket Evolution PHP Library <small>for use with Zend Framework 1</small></h1>
             </div>
-		    <p>This is a quick demo of the Ticket Evolution PHP Library for use with <a href="http://framework.zend.com/">Zend Framework 1</a> which is used to access the <a href="http://developer.ticketevolution.com/overview">Ticket Evolution Web Services API</a>. Zend Framework is an easy-to-use PHP framework that can be used in whole or in parts regardless of whether you program in MVC or procedural style. Simply make sure that the Zend Framework <code>/library</code> folder is in your PHP <code>include_path</code>.</p>
-		    <p>All of the <code>list*()</code> methods will return a <code>\TicketEvolution\Webservice\ResultSet</code> object with can be easily iterated using simple loops. If you prefer PHP’s <a href="http://www.php.net/manual/en/spl.iterators.php">built-in SPL iterators</a> you will be hapy to know that <code>\TicketEvolution\Webservice_ResultSet</code> implements <a href="http://www.php.net/manual/en/class.seekableiterator.php">SeekableIterator</a>.</p>
+		    <p>This is a quick demo of the Ticket Evolution PHP Client Library which is used to access the <a href="http://developer.ticketevolution.com/overview">Ticket Evolution Web Services API</a>. <a href="http://framework.zend.com/">Zend Framework 1</a>is required and is an easy-to-use PHP framework that can be used in whole or in parts regardless of whether you program in MVC or procedural style.</p>
+		    <p>All of the <code>list*()</code> methods will return a <code>TicketEvolution\Webservice\ResultSet</code> object with can be easily iterated using simple loops. If you prefer PHP’s <a href="http://www.php.net/manual/en/spl.iterators.php">built-in SPL iterators</a> you will be hapy to know that <code>TicketEvolution\Webservice\ResultSet</code> implements <a href="http://www.php.net/manual/en/class.seekableiterator.php"><code>SeekableIterator</code></a>.</p>
 
 		    <?php
 		        if (isset($input)) {
@@ -784,19 +784,32 @@ if (isset($_REQUEST['libraryMethod'])) {
                             break;
 
                         case 'createShipments' :
-                            if ($_FILES['airbill']['error'] == 0) {
-                                $options['airbill'] = base64_encode(file_get_contents($_FILES['airbill']['tmp_name']));
-                            } else {
-                                // Throw Exception
+                            if (isset($_FILES['airbill']['error'])) {
+                                if ($_FILES['airbill']['error'] == 0) {
+                                    $options['airbill'] = base64_encode(file_get_contents($_FILES['airbill']['tmp_name']));
+                                } else {
+                                    // Throw Exception
+                                }
+
+                                echo 'if ($_FILES[\'airbill\'][\'error\'] == 0) {' . PHP_EOL
+                                   . '    $options[\'airbill\'] = base64_encode(file_get_contents($_FILES[\'airbill\'][\'tmp_name\']));' . PHP_EOL
+                                   . '} else {' . PHP_EOL
+                                   . '    throw new Exception(\'You had an error uploading your airbill.\');' . PHP_EOL
+                                   . '}' . PHP_EOL
+                                   . PHP_EOL
+                                ;
                             }
 
-                            echo 'if ($_FILES[\'airbill\'][\'error\'] == 0) {' . PHP_EOL
-                               . '    $options[\'airbill\'] = base64_encode(file_get_contents($_FILES[\'airbill\'][\'tmp_name\']));' . PHP_EOL
-                               . '} else {' . PHP_EOL
-                               . '    throw new Exception(\'You had an error uploading your airbill.\');' . PHP_EOL
-                               . '}' . PHP_EOL
-                               . PHP_EOL
-                            ;
+                            //var_dump($options['item_ids']);
+                            foreach ($options['item_ids'] as $key => $itemId) {
+                                if (!empty($itemId)) {
+                                    $items[]['id'] = (int) $itemId;
+                                }
+                            }
+                            $options['order_id'] = (int) $options['order_id'];
+                            $options['items'] = $items;
+                            unset($options['item_ids'], $items);
+
                             _outputListCode($libraryMethod, $options);
 
                             $results = _doCreate($tevo, $libraryMethod, $options);
@@ -1767,7 +1780,32 @@ if (isset($_REQUEST['libraryMethod'])) {
                         </div>
                     </div>
 
-                    <div class="control-group listShipments createShipments updateShipment">
+                    <div class="control-group listShipments createShipments updateShipment createShipments-FedEx createShipments-Offline createShipments-Courier createShipments-WillCall createShipments-Email createShipments-Eticket createShipments-Custom createShipments-InstantDelivery createShipments-Tbd">
+                        <label class="control-label" for="type"><code>type</code></label>
+                        <div class="controls">
+                        <select name="type" id="type" onchange="handleCreateShipMentTypeChange();">
+                            <option value="">Select One…</option>
+                            <option value="FedEx">FedEx</option>
+                            <option value="Offline">Offline</option>
+                            <option value="Courier">Courier</option>
+                            <option value="WillCall">Will Call</option>
+                            <option value="Email">Email</option>
+                            <option value="Eticket">Eticket</option>
+                            <option value="Custom">Custom</option>
+                            <option value="InstantDelivery">InstantDelivery</option>
+                            <option value="Tbd">Tbd</option>
+                        </select>
+                        </div>
+                    </div>
+
+                    <div class="control-group createShipments updateShipment createShipments-FedEx createShipments-Offline createShipments-Courier createShipments-WillCall createShipments-Email createShipments-Eticket createShipments-Custom createShipments-InstantDelivery createShipments-Tbd">
+                        <label class="control-label" for="replace_exsiting"><code>replace_exsiting</code>?</label>
+                        <div class="controls">
+                            <input name="replace_exsiting" id="replace_exsiting" type="checkbox" value="1" />
+                        </div>
+                    </div>
+
+                    <div class="control-group listShipments createShipments updateShipment createShipments createShipments-FedEx">
                         <label class="control-label" for="tracking_number"><code>tracking_number</code></label>
                         <div class="controls">
                             <input name="tracking_number" id="tracking_number" type="text" value="" />
@@ -1788,19 +1826,6 @@ if (isset($_REQUEST['libraryMethod'])) {
                         </div>
                     </div>
 
-                    <div class="control-group listShipments createShipments updateShipment">
-                        <label class="control-label" for="shipment_type"><code>shipment_type</code></label>
-                        <div class="controls">
-                        <select name="shipment_type" id="shipment_type">
-                            <option value="">Select One…</option>
-                            <option value="FedEx">FedEx</option>
-                            <option value="UPS">UPS</option>
-                            <option value="Courier">Courier</option>
-                            <option value="WillCall">Will Call</option>
-                        </select>
-                        </div>
-                    </div>
-
                     <div class="control-group listShipments">
                         <label class="control-label" for="shipment_state">(shipment) <code>state</code></label>
                         <div class="controls">
@@ -1815,7 +1840,7 @@ if (isset($_REQUEST['libraryMethod'])) {
                         </div>
                     </div>
 
-                    <div class="control-group listShipments createShipments showOrder acceptOrder rejectOrder updateOrder completeOrder listEvoPayTransactions">
+                    <div class="control-group listShipments createShipments showOrder acceptOrder rejectOrder updateOrder completeOrder listEvoPayTransactions createShipments-FedEx createShipments-Offline createShipments-Courier createShipments-WillCall createShipments-Email createShipments-Eticket createShipments-Custom createShipments-InstantDelivery createShipments-Tbd">
                         <label class="control-label" for="order_id"><code>order_id</code></label>
                         <div class="controls">
                             <input name="order_id" id="order_id" type="text" value="" />
@@ -1836,31 +1861,25 @@ if (isset($_REQUEST['libraryMethod'])) {
                         </div>
                     </div>
 
-                    <div class="control-group createShipments">
-                        <label class="control-label" for="items"><code>items</code></label>
+                    <div class="control-group createShipments createShipments-FedEx createShipments-Offline createShipments-Courier createShipments-WillCall createShipments-Email createShipments-Eticket createShipments-Custom createShipments-InstantDelivery createShipments-Tbd">
+                        <label class="control-label" for="item_id_0">Item IDs</label>
                         <div class="controls">
-                            <input name="items" id="items" type="text" value="" />
+                                  <input name="item_ids[]" id="item_0_id" type="text" value="" />
+                            <br /><input name="item_ids[]" id="item_1_id" type="text" value="" />
+                            <br /><input name="item_ids[]" id="item_2_id" type="text" value="" />
                         </div>
                     </div>
 
-                    <div class="control-group createShipments updateShipment">
+                    <div class="control-group createShipments updateShipment  createShipments-FedEx">
                         <label class="control-label" for="service_type1"><code>service_type</code></label>
                         <div class="controls">
                             <select name="service_type" id="service_type1">
-                                <option value="FEDEX_GROUND_HOME">Ground Home Delivery</option>
-                                <option value="FEDEX_GROUND">FedEx Ground</option>
-                                <option value="FEDEX_FIRST_OVERN">First Overnight</option>
-                                <option value="8">FedEx 2 Day Saturday Delivery</option>
-                                <option value="10">International Ground</option>
-                                <option value="FEDEX_INTNL_ECO">International Economy</option>
-                                <option value="FEDEX_INTNL_PRI">International Priority</option>
-                                <option value="FEDEX_INTNL_FIRST">International First</option>
-                                <option value="14">International Priority Saturday Delivery</option>
-                                <option value="FEDEX_EXPRESS_SAV">FedEx Express Saver</option>
-                                <option value="PRIORITY_OVERNIGHT_SATURDAY_DELIVERY">Priority Overnight Saturday Delivery</option>
-                                <option value="FEDEX_PRIORITY_OVERN">Priority Overnight</option>
-                                <option value="FEDEX_2DAY">FedEx 2 Day</option>
-                                <option value="FEDEX_STANDARD_OVERN">Standard Overnight</option>
+                            <option value="">Select One…</option>
+                                <option value="PRIORITY_OVERNIGHT">PRIORITY_OVERNIGHT</option>
+                                <option value="STANDARD_OVERNIGHT">STANDARD_OVERNIGHT</option>
+                                <option value="FEDEX_2_DAY">FEDEX_2_DAY</option>
+                                <option value="EXPRESS_SAVER">EXPRESS_SAVER</option>
+                                <option value="10LEAST_EXPENSIVE">LEAST_EXPENSIVE</option>
                             </select>
                             <span class="help-inline">Service type for this shipment, as returned from a call to get rates.</span>
                         </div>
@@ -2584,12 +2603,25 @@ function _outputOptionsCode($options)
 {
     echo '$options = array(' . PHP_EOL;
     foreach( $options as $key => $val) {
+//         var_dump($key);
+//           var_dump($val);
+
         if (!is_array($val) && !is_object($val) && is_numeric($val)) {
             echo '    \'' . $key . '\' => ' . $val . ',' . PHP_EOL;
         } elseif (!is_array($val) && !is_object($val) && !is_numeric($val)) {
             echo '    \'' . $key . '\' => \'' . $val . '\',' . PHP_EOL;
-//         } elseif (is_array($val)) {
-//             echo '    \'' . $key . '\' => \'' . implode(',', $val) . '\',' . PHP_EOL;
+        } elseif (is_array($val)) {
+            echo '    \'' . $key . '\' => array(' . PHP_EOL;
+            foreach ($val as $key2 => $val2) {
+//           var_dump($key2);
+//           var_dump($val2);
+                foreach ($val2 as $key3 => $val3) {
+//                 $str = implode(', ', array_values($val2));
+//                 echo $str;
+                    echo '        \'' . $key3 . '\' => \'' . $val3 . '\',' . PHP_EOL;
+                }
+            }
+            echo '    ),' . PHP_EOL;
         }
     }
     echo ');' . PHP_EOL . PHP_EOL
@@ -2711,7 +2743,20 @@ function _doList(\TicketEvolution\Webservice $tevo, $libraryMethod, array $optio
     try {
         $results = $tevo->$libraryMethod($options);
         return $results;
-    } catch (Exception $e) {
+    } catch(\TicketEvolution\ApiInvalidRequestException $e) {
+        // Invalid parameters were supplied
+        return false;
+    } catch (\TicketEvolution\ApiAuthenticationException $e) {
+        // Authentication with the API failed
+        return false;
+    } catch (\TicketEvolution\ApiConnectionException $e) {
+        // Network communication failed
+        return false;
+    } catch (\TicketEvolution\ApiException $e) {
+        // Something went wrong with the request
+        return false;
+    } catch (\Exception $e) {
+        // Something else happened, probably unrelated to TicketEvolution
         return false;
     }
 }
