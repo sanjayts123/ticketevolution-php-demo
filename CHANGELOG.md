@@ -1,3 +1,6 @@
+## 1.0.6 (September 23, 2013)
+- The copyright license has been transferred from [Team One Tickets & Sports Tours, Inc](http://www.teamonetickets.com) to [Ticket Evolution, Inc.](http://www.ticketevolution.com/). A copyright transfer agreement is on file with Ticket Evolution, Inc.
+
 ## 1.0.5 (September 3, 2013)
 - Fixed bug where using 'order_by' wouldn’t work
 

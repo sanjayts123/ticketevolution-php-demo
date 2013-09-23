@@ -96,6 +96,19 @@ function toggleOptions() {
 }
 
 
+function handleCreateShipMentTypeChange() {
+    'use strict';
+
+    var selectedType = $('#type').val();
+
+    $('.createShipments').hide();
+
+    $('.createShipments-' + selectedType).show();
+
+    return true;
+}
+
+
 function checkForm() {
     'use strict';
 
